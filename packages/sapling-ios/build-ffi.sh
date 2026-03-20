@@ -6,15 +6,8 @@ function help () {
   echo "Usage: build-ffi [option]"
   echo "Options:"
   echo "  -h, --help    show help text"
-  echo "  -m, --manual  build using the manual script"
-  echo "  -l, --lipo    build using the cargo-lipo crate (default)"
   echo
 }
-
-MODE_MANUAL=manual
-MODE_LIPO=lipo
-
-MODE=$MODE_LIPO
 
 while [ -n "$1" ]; do
 
@@ -22,12 +15,6 @@ while [ -n "$1" ]; do
   -h|--help) 
     help
     exit
-    ;;
-  -m|--manual)
-    MODE=$MODE_MANUAL
-    ;;
-  -l|--lipo)
-    MODE=$MODE_LIPO
     ;;
   esac
 
@@ -37,6 +24,7 @@ done
 
 ARM_64=arm64
 X86_64=x86_64
+ARM_64_SIMULATOR=arm64-sim
 
 CURR_DIR=${BASH_SOURCE[0]%/build-ffi.sh}
 CORE_MANIFEST_PATH="$CURR_DIR/../sapling/Cargo.toml"
@@ -46,8 +34,8 @@ function ios_target () {
     "$ARM_64")
       echo ios-arm64
       ;;
-    "$X86_64")
-      echo ios-x86_64-simulator
+    "$ARM_64_SIMULATOR" | "$X86_64")
+      echo ios-arm64_x86_64-simulator
       ;;
     *)
       echo "Error: Unknown iOS target."
@@ -60,6 +48,9 @@ function rust_target () {
   case $1 in
     "$ARM_64")
       echo aarch64-apple-ios
+      ;;
+    "$ARM_64_SIMULATOR")
+      echo aarch64-apple-ios-sim
       ;;
     "$X86_64")
       echo x86_64-apple-ios
@@ -130,6 +121,7 @@ function manual_build () {
   echo "  Adding Rust targets..."
   add_target $ARM_64
   add_target $X86_64
+  add_target $ARM_64_SIMULATOR
 
   ### SETUP COMPILE end ###
 
@@ -141,61 +133,14 @@ function manual_build () {
     local target
 
     target=$(rust_target "$1")
-    echo "  RUSTFLAGS='--cfg target_os=\"ios\"' cargo build --manifest-path $CORE_MANIFEST_PATH --release --features \"c_bindings\" --target $target"
+    echo "  RUSTFLAGS='cargo build --manifest-path $CORE_MANIFEST_PATH --release --features \"c_bindings\" --target $target"
 
-    RUSTFLAGS='--cfg target_os="ios"' cargo build --manifest-path "$CORE_MANIFEST_PATH" --release --features "c_bindings" --target ""
+    cargo build --manifest-path "$CORE_MANIFEST_PATH" --release --features "c_bindings" --target "$target"
   }
 
   build $ARM_64
   build $X86_64
-
-  ### COMPILE end ###
-}
-
-function lipo_build () {
-  ### CHECK begin ###
-
-  echo "Checking the environment..."
-
-  echo "  [commands]"
-  if which xcodebuild >/dev/null; then
-    echo -e "    \xE2\x9C\x94 xcodebuild"
-  else
-    echo -e "    \xE2\x9C\x97 xcodebuild"
-    ERROR="xcode-select could not been found"
-  fi
-
-  if which cargo >/dev/null; then
-    echo -e "    \xE2\x9C\x94 cargo-lipo"
-  else
-    echo -e "    \xE2\x9C\x97 cargo-lipo"
-    ERROR="cargo-lipo could not been found"
-  fi
-
-  if [[ -n "${ERROR}" ]]; then
-    echo "Error: $ERROR."
-    exit 1
-  fi
-
-  ### CHECK end ###
-
-  ### SETUP COMPILE begin ###
-
-  echo -e "\nSetting up compile targets..."
-
-  echo "  Adding Rust targets..."
-  add_target $ARM_64
-  add_target $X86_64
-
-  echo "  Installing cargo-lipo..."
-  cargo install cargo-lipo
-
-  ### SETUP COMPILE end ###
-
-  ### COMPILE begin ###
-
-  echo -e "\nCompiling..."
-  RUSTFLAGS='--cfg target_os="ios"' cargo lipo --manifest-path "$CORE_MANIFEST_PATH" --release --features "c_bindings"
+  build $ARM_64_SIMULATOR
 
   ### COMPILE end ###
 }
@@ -213,10 +158,15 @@ function create_framework () {
   XCFRAMEWORK_DIR=$CURR_DIR/SaplingFFI.xcframework
   rm -rf $XCFRAMEWORK_DIR
 
+  lipo -create \
+  "$TARGET_DIR/$(rust_target "$X86_64")/release/lib$LIB_NAME.a" \
+  "$TARGET_DIR/$(rust_target "$ARM_64_SIMULATOR")/release/lib$LIB_NAME.a" \
+  -output /tmp/lib${LIB_NAME}.a
+
   xcodebuild -create-xcframework \
   -library "$TARGET_DIR/$(rust_target "$ARM_64")/release/lib$LIB_NAME.a" \
   -headers "$INCLUDE_DIR" \
-  -library "$TARGET_DIR/$(rust_target "$X86_64")/release/lib$LIB_NAME.a" \
+  -library "/tmp/lib${LIB_NAME}.a" \
   -headers "$INCLUDE_DIR" \
   -output "$XCFRAMEWORK_DIR"
 
@@ -226,7 +176,7 @@ function create_framework () {
     module_map_path=$(ios_target "$1")/Headers/module.modulemap
     if printf "%s\n" \
       "module SaplingFFI {" \
-      "$(echo -e "\theader \"airgap_sapling.h\"")" \
+      "$(echo -e "\theader \"madfish_sapling.h\"")" \
       "$(echo -e "\texport *")" \
       "}" > "$XCFRAMEWORK_DIR/$module_map_path"; then
       echo -e "  \xE2\x9C\x94 $1 module map ($module_map_path)"
@@ -238,19 +188,12 @@ function create_framework () {
 
   create_module $ARM_64
   create_module $X86_64
+  create_module $ARM_64_SIMULATOR
 
   ### CREATE XCFRAMEWORK end ###
 }
 
-case "$MODE" in
-  "$MODE_MANUAL")
-    manual_build
-    create_framework
-    ;;
-  "$MODE_LIPO")
-    lipo_build
-    create_framework
-    ;;
-esac
+manual_build
+create_framework
 
 echo -e "\nDone."

@@ -1,8 +1,8 @@
-# AirGap Sapling
+# Madfish Sapling
 
 [![npm](https://img.shields.io/npm/v/@airgap/sapling-wasm.svg?colorB=brightgreen)](https://www.npmjs.com/package/@airgap/sapling-wasm)
-[![jitpack](https://img.shields.io/jitpack/v/github/airgap-it/airgap-sapling)](https://jitpack.io/#airgap-it/airgap-sapling)
-[![spm](https://img.shields.io/github/v/tag/airgap-it/airgap-sapling?include_prereleases&label=spm)](https://github.com/airgap-it/airgap-sapling/releases)
+[![jitpack](https://img.shields.io/jitpack/v/github/madfish-solutions/madfish-sapling)](https://jitpack.io/#madfish-solutions/madfish-sapling)
+[![spm](https://img.shields.io/github/v/tag/madfish-solutions/madfish-sapling?include_prereleases&label=spm)](https://github.com/madfish-solutions/madfish-sapling/releases)
 
 Wasm, Android and iOS wrappers around [Zcash Rust crates](https://github.com/zcash/librustzcash).
 
@@ -16,48 +16,13 @@ The project is divided into the following packages:
 
 ## Sapling Wasm
 
-### Install
-
-To add JS AirGap Sapling library into your project run:
-
-```bash
-$ npm install --save @airgap/sapling-wasm
-```
-
-### Examples
-
-```ts
-import * as bip39 from 'bip39'
-import * as sapling from '@airgap/sapling-wasm'
-import { SaplingPaymentAddress } from '@airgap/sapling-wasm'
-
-const mnemonic: string = bip39.generateMnemonic()
-const seed: Buffer = await bip39.mnemonicToSeed(mnemonic, '')
-const derivationPath: string = 'm/'
-
-// create an extended spending key
-const spendingKey: Buffer = await sapling.getExtendedSpendingKey(seed, derivationPath)
-console.log('spendingKey =', spendingKey.toString('hex'))
-
-// create an extended full viewing key
-const viewingKey: Buffer = await sapling.getExtendedFullViewingKey(seed, derivationPath)
-console.log('viewingKey =', viewingKey.toString('hex'))
-
-// get default address
-const address: SaplingPaymentAddress = await sapling.getPaymentAddressFromViewingKey(viewingKey)
-console.log(
-  'address.index =', address.index.toString('hex'),
-  'address.raw =', address.raw.toString('hex')
-)
-```
-
-More advanced examples can be found in `js/examples`.
+The custom version of Sapling Wasm has not been released, use [Airgap Sapling Wasm](https://github.com/airgap-it/airgap-sapling?tab=readme-ov-file#sapling-wasm).
 
 ## Sapling Android
 
 ### Install
 
-To add Android AirGap Sapling library into your project:
+To add Android Madfish Sapling library into your project:
 
 1. Ensure [Android NDK](https://developer.android.com/ndk) is supported in your project. 
 
@@ -75,20 +40,20 @@ To add Android AirGap Sapling library into your project:
   ```groovy
   def saplingVersion = "x.y.z"
 
-  implementation "com.github.airgap-it:airgap-sapling:$saplingVersion"
+  implementation "com.github.madfish-solutions:madfish-sapling:$saplingVersion"
   ```
 
 ## Sapling iOS
 
 ### Install
 
-To add iOS AirGap Sapling into your project, add the package dependency:
+To add iOS Madfish Sapling into your project, add the package dependency:
 
 #### Xcode
 
-Open the `Add Package Dependency` window (as described in [the official guide](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)) and enter the AirGap Sapling GitHub repository URL:
+Open the `Add Package Dependency` window (as described in [the official guide](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)) and enter the Madfish Sapling GitHub repository URL:
 ```
-https://github.com/airgap-it/airgap-sapling
+https://github.com/madfish-solutions/madfish-sapling
 ```
 
 #### Package.swift file
@@ -96,6 +61,6 @@ https://github.com/airgap-it/airgap-sapling
 Add the following dependency in your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/airgap-it/airgap-sapling", from: "x.y.z")
+.package(url: "https://github.com/madfish-solutions/madfish-sapling", from: "x.y.z")
 ```
 
