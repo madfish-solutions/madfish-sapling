@@ -12,7 +12,7 @@ android {
     ndkVersion = "29.0.14206865"
 
     defaultConfig {
-        namespace "it.airgap.sapling"
+        namespace "com.madfish.sapling"
         minSdk 21
         targetSdk 36
         versionCode 1
@@ -51,7 +51,7 @@ android {
 
     cargo {
         module = '../../sapling'
-        libname = 'libairgap_sapling'
+        libname = 'libmadfish_sapling'
         targets = ['arm', 'arm64', 'x86', 'x86_64']
         profile = 'release'
         prebuiltToolchains = true
@@ -83,7 +83,7 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                groupId = 'it.airgap'
+                groupId = 'com.madfish'
                 artifactId = 'sapling'
                 version = android.defaultConfig.versionName
             }

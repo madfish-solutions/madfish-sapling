@@ -1,4 +1,4 @@
 module SaplingFFI {
-	header "airgap_sapling.h"
+	header "madfish_sapling.h"
 	export *
 }

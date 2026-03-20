@@ -1,12 +1,12 @@
-# AirGap Sapling Android
+# Madfish Sapling Android
 
-[![release](https://img.shields.io/jitpack/v/github/airgap-it/airgap-sapling)](https://jitpack.io/#airgap-it/airgap-sapling)
+[![release](https://img.shields.io/jitpack/v/github/madfish-solutions/madfish-sapling)](https://jitpack.io/#madfish-solutions/madfish-sapling)
 
 An Android wrapper around [Zcash Rust crates](https://github.com/zcash/librustzcash).
 
 ## Install
 
-To add Android AirGap Sapling library into your project:
+To add Android Madfish Sapling library into your project:
 
 1. Ensure [Android NDK](https://developer.android.com/ndk) is supported in your project. 
 
@@ -24,7 +24,7 @@ To add Android AirGap Sapling library into your project:
   ```groovy
   def saplingVersion = "x.y.z"
 
-  implementation "com.github.airgap-it:airgap-sapling:$saplingVersion"
+  implementation "com.github.madfish-solutions:madfish-sapling:$saplingVersion"
   ```
 
 ## Development

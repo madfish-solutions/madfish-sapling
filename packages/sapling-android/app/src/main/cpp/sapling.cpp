@@ -4,7 +4,7 @@
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extPakFromXsk(
+Java_com_madfish_sapling_Sapling_extPakFromXsk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jxsk) {
@@ -25,7 +25,7 @@ Java_it_airgap_sapling_Sapling_extPakFromXsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extComputeCmu(
+Java_com_madfish_sapling_Sapling_extComputeCmu(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jaddr,
@@ -54,7 +54,7 @@ Java_it_airgap_sapling_Sapling_extComputeCmu(
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_it_airgap_sapling_Sapling_extInitParameters(
+Java_com_madfish_sapling_Sapling_extInitParameters(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jspendParams,
@@ -77,7 +77,7 @@ Java_it_airgap_sapling_Sapling_extInitParameters(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extKeyAgreement(
+Java_com_madfish_sapling_Sapling_extKeyAgreement(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jp,
@@ -103,7 +103,7 @@ Java_it_airgap_sapling_Sapling_extKeyAgreement(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extMerkleHash(
+Java_com_madfish_sapling_Sapling_extMerkleHash(
         JNIEnv *env,
         jobject /* this */,
         jlong jdepth,
@@ -132,7 +132,7 @@ Java_it_airgap_sapling_Sapling_extMerkleHash(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extComputeNullifierWithXfvk(
+Java_com_madfish_sapling_Sapling_extComputeNullifierWithXfvk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jxfvk,
@@ -169,7 +169,7 @@ Java_it_airgap_sapling_Sapling_extComputeNullifierWithXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extOutputDescriptionFromXfvk(
+Java_com_madfish_sapling_Sapling_extOutputDescriptionFromXfvk(
         JNIEnv *env, 
         jobject /* this */,
         jlong jctx,
@@ -204,7 +204,7 @@ Java_it_airgap_sapling_Sapling_extOutputDescriptionFromXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extOutputDescriptionFromXfvkWithMemo(
+Java_com_madfish_sapling_Sapling_extOutputDescriptionFromXfvkWithMemo(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx,
@@ -256,7 +256,7 @@ Java_it_airgap_sapling_Sapling_extOutputDescriptionFromXfvkWithMemo(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extOutputDescriptionFromOvk(
+Java_com_madfish_sapling_Sapling_extOutputDescriptionFromOvk(
         JNIEnv *env, 
         jobject /* this */,
         jlong jctx,
@@ -291,7 +291,7 @@ Java_it_airgap_sapling_Sapling_extOutputDescriptionFromOvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extPartialOutputDescription(
+Java_com_madfish_sapling_Sapling_extPartialOutputDescription(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx,
@@ -326,7 +326,7 @@ Java_it_airgap_sapling_Sapling_extPartialOutputDescription(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extDeriveEpkFromEsk(
+Java_com_madfish_sapling_Sapling_extDeriveEpkFromEsk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jdiv,
@@ -352,7 +352,7 @@ Java_it_airgap_sapling_Sapling_extDeriveEpkFromEsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extDefaultPaymentAddressFromXfvk(
+Java_com_madfish_sapling_Sapling_extDefaultPaymentAddressFromXfvk(
         JNIEnv *env, 
         jobject /* this */,
         jbyteArray jxfvk) {
@@ -371,7 +371,7 @@ Java_it_airgap_sapling_Sapling_extDefaultPaymentAddressFromXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extNextPaymentAddressFromXfvk(
+Java_com_madfish_sapling_Sapling_extNextPaymentAddressFromXfvk(
         JNIEnv *env, 
         jobject /* this */,
         jbyteArray jxfvk,
@@ -394,7 +394,7 @@ Java_it_airgap_sapling_Sapling_extNextPaymentAddressFromXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extPaymentAddressFromXfvk(
+Java_com_madfish_sapling_Sapling_extPaymentAddressFromXfvk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jxfvk,
@@ -418,7 +418,7 @@ Java_it_airgap_sapling_Sapling_extPaymentAddressFromXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extPaymentAddressFromIvk(
+Java_com_madfish_sapling_Sapling_extPaymentAddressFromIvk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jivk,
@@ -442,7 +442,7 @@ Java_it_airgap_sapling_Sapling_extPaymentAddressFromIvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extDiversifierFromPaymentAddress(
+Java_com_madfish_sapling_Sapling_extDiversifierFromPaymentAddress(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jaddr) {
@@ -461,7 +461,7 @@ Java_it_airgap_sapling_Sapling_extDiversifierFromPaymentAddress(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extPkdFromPaymentAddress(
+Java_com_madfish_sapling_Sapling_extPkdFromPaymentAddress(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jaddr) {
@@ -482,7 +482,7 @@ Java_it_airgap_sapling_Sapling_extPkdFromPaymentAddress(
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_it_airgap_sapling_Sapling_extInitProvingContext(
+Java_com_madfish_sapling_Sapling_extInitProvingContext(
         JNIEnv *env,
         jobject /* this */) {
     return (jlong) c_init_proving_context();
@@ -490,7 +490,7 @@ Java_it_airgap_sapling_Sapling_extInitProvingContext(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_it_airgap_sapling_Sapling_extDropProvingContext(
+Java_com_madfish_sapling_Sapling_extDropProvingContext(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx) {
@@ -501,7 +501,7 @@ Java_it_airgap_sapling_Sapling_extDropProvingContext(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extRandR(JNIEnv *env, jobject /* this */) {
+Java_com_madfish_sapling_Sapling_extRandR(JNIEnv *env, jobject /* this */) {
     size_t r_len;
     unsigned char *r = c_rand_r(&r_len);
     jbyteArray jr = uchar_to_jbyteArray(env, r, r_len);
@@ -515,7 +515,7 @@ Java_it_airgap_sapling_Sapling_extRandR(JNIEnv *env, jobject /* this */) {
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extCreateBindingSignature(
+Java_com_madfish_sapling_Sapling_extCreateBindingSignature(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx,
@@ -541,7 +541,7 @@ Java_it_airgap_sapling_Sapling_extCreateBindingSignature(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extSpendDescriptionFromXsk(
+Java_com_madfish_sapling_Sapling_extSpendDescriptionFromXsk(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx,
@@ -607,7 +607,7 @@ Java_it_airgap_sapling_Sapling_extSpendDescriptionFromXsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extSpendDescriptionFromPak(
+Java_com_madfish_sapling_Sapling_extSpendDescriptionFromPak(
         JNIEnv *env,
         jobject /* this */,
         jlong jctx,
@@ -673,7 +673,7 @@ Java_it_airgap_sapling_Sapling_extSpendDescriptionFromPak(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extSignSpendDescriptionWithXsk(
+Java_com_madfish_sapling_Sapling_extSignSpendDescriptionWithXsk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray js_desc,
@@ -719,7 +719,7 @@ Java_it_airgap_sapling_Sapling_extSignSpendDescriptionWithXsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extXsk(
+Java_com_madfish_sapling_Sapling_extXsk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jseed,
@@ -744,7 +744,7 @@ Java_it_airgap_sapling_Sapling_extXsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extXfvk(
+Java_com_madfish_sapling_Sapling_extXfvk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jseed,
@@ -767,7 +767,7 @@ Java_it_airgap_sapling_Sapling_extXfvk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extXfvkFromXsk(
+Java_com_madfish_sapling_Sapling_extXfvkFromXsk(
         JNIEnv *env,
         jobject /* this */,
         jbyteArray jxsk) {
@@ -786,7 +786,7 @@ Java_it_airgap_sapling_Sapling_extXfvkFromXsk(
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extOvkFromXfvk(JNIEnv *env, jobject /* this */, jbyteArray jxfvk) {
+Java_com_madfish_sapling_Sapling_extOvkFromXfvk(JNIEnv *env, jobject /* this */, jbyteArray jxfvk) {
     size_t xfvk_len;
     const unsigned char *xfvk = jbyteArray_to_uchar(env, jxfvk, &xfvk_len);
 
@@ -802,7 +802,7 @@ Java_it_airgap_sapling_Sapling_extOvkFromXfvk(JNIEnv *env, jobject /* this */, j
 
 extern "C"
 JNIEXPORT jbyteArray JNICALL
-Java_it_airgap_sapling_Sapling_extXfvkToIvk(JNIEnv *env, jobject /* this */, jbyteArray jxfvk) {
+Java_com_madfish_sapling_Sapling_extXfvkToIvk(JNIEnv *env, jobject /* this */, jbyteArray jxfvk) {
     size_t xfvk_len;
     const unsigned char *xfvk = jbyteArray_to_uchar(env, jxfvk, &xfvk_len);
 

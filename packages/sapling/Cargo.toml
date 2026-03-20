@@ -1,5 +1,5 @@
 [package]
-name = "airgap_sapling"
+name = "madfish_sapling"
 version = "0.0.11-beta.1"
 authors = ["Papers.ch <contact@papers.ch>"]
 edition = "2018"

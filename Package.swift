@@ -15,7 +15,7 @@ let excludes: [String] = [
 ]
 
 let package = Package(
-    name: "AirGapSapling",
+    name: "MadfishSapling",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(

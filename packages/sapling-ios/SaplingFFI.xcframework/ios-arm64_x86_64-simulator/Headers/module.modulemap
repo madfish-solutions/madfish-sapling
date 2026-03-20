@@ -1,0 +1,4 @@
+module SaplingFFI {
+	header "madfish_sapling.h"
+	export *
+}
