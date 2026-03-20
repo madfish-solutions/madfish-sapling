@@ -161,12 +161,12 @@ function create_framework () {
   lipo -create \
   "$TARGET_DIR/$(rust_target "$X86_64")/release/lib$LIB_NAME.a" \
   "$TARGET_DIR/$(rust_target "$ARM_64_SIMULATOR")/release/lib$LIB_NAME.a" \
-  -output /tmp/lib${LIB_NAME}_simulator.a
+  -output /tmp/lib${LIB_NAME}.a
 
   xcodebuild -create-xcframework \
   -library "$TARGET_DIR/$(rust_target "$ARM_64")/release/lib$LIB_NAME.a" \
   -headers "$INCLUDE_DIR" \
-  -library "/tmp/lib${LIB_NAME}_simulator.a" \
+  -library "/tmp/lib${LIB_NAME}.a" \
   -headers "$INCLUDE_DIR" \
   -output "$XCFRAMEWORK_DIR"
 
